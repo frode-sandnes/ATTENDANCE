@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<! -- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, May 2021 -->
+
+<head>
+    <meta charset="utf-8">
+    <title>ATTENDANCE: monitoring class attendance</title>
+    <link href="ATTENDANCE.css" rel="stylesheet">
+</head>
+
+
+
+
+<script type="text/javascript" src="ATTENDANCE.js"></script>
+<script type="text/javascript" src="RGraph.common.core.js"></script>
+<script type="text/javascript" src="RGraph.common.sheets.js"></script>
+<script type="text/javascript" src="RGraph.bar.js"></script>
+
+
+
+<html>
+	<body onLoad="onLoad()">
+		<h1>ATTENDANCE: monitoring class attendance</h1>
+
+		<form onsubmit="return onload()">
+			<label for="URLID"><span>URL to Google Sheets responses </span></label>
+			<input type="text" name="url" id="URLID" size="50"/>
+			<input type="submit">
+		</form>
+
+		<p id="output1Id" />
+
+				
+	</body>
+</html>
