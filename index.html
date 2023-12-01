@@ -1,35 +1,87 @@
 <!DOCTYPE html>
 
 <!-- By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, May 2021 -->
-
+<html>
 <head>
     <meta charset="utf-8">
     <title>ATTENDANCE: monitoring class attendance</title>
     <link href="ATTENDANCE.css" rel="stylesheet">
+
+	<script type="text/javascript" src="ATTENDANCE.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>  
+
+
 </head>
 
+<body>
+		<h1>ATTENDANCE: In-class progress tracking</h1>    
+		<p>For non csv-output with non-English characters. Convert to ANSI-text using notepad (on Windows), and import into excel and export as xls-format.</p>
+		<form id="configuration">
+			<ul>
+				<li>
+					<label for="file-selector" class="custom-file-upload"><span>Load attendance spreadsheet</span></label>
+					<input type="file" id="file-selector" accept=".xlsx, .xls, .csv" >
+				</li>
+				<li>
+					<label for="absenceCode"><span>Valid absence code</span></label>
+					<input type="text" id="absenceCode" value="accept1234" onBlur="guiTrigger();">
+				</li>
+				<li>
+					<label for="minAttendanceLimit"><span>Minimum attendance limit (%)</span></label>
+					<input type="number" min="1" max="100" id="minAttendanceLimit" value="80" onBlur="guiTrigger();">					
+				</li>
+				<li>
+					<label for="minForDisplay"><span>Min. count threshold for including</span></label>
+					<input type="number" min="1" max="13" id="minForDisplay" value="5" onBlur="guiTrigger();">					
+				</li>				
+			<br>
+				<li>
+					<label for="timestampColumn"><span>Timestamp column</span></label>
+					<input id="timestampColumn" class="enabledButton" list="timestampInput" placeholder="Select timestamp column..." onChange="updateList()" required>					
+				</li>
+				<li>
+					<label for="nameColumn"><span>Name column</span></label>
+					<input id="nameColumn" class="enabledButton" list="fullnameInput" placeholder="Select name column..." onChange="updateList()" required>					
+				</li>
+				<li>
+					<label for="codeColumn"><span>Code column</span></label>
+					<input id="codeColumn" class="enabledButton" list="codeInput" placeholder="Select code column..." onChange="updateList()" required>					
+				</li>
+			<br>
+				<li>
+					<label for="copyToClipboard"><span>Copy current report to clipboard</span></label>
+					<button type="button" id="copyToClipboard" class="enabledButton" onClick="reportToClipboard()" >Copy to clipboard</button>					
+				</li>
 
+				<li>
+					<label for="saveExcelReport"><span>Save spreadsheet report</span></label>
+					<button type="button" id="saveExcelReport" class="enabledButton" onClick="saveExcelSheet()" >Save spreadsheet report</button>					
+				</li>
 
+			</ul>											
+		</form>		
 
-<script type="text/javascript" src="ATTENDANCE.js"></script>
-<script type="text/javascript" src="RGraph.common.core.js"></script>
-<script type="text/javascript" src="RGraph.common.sheets.js"></script>
-<script type="text/javascript" src="RGraph.bar.js"></script>
+		<br>
 
-
-
-<html>
-	<body onLoad="onLoad()">
-		<h1>ATTENDANCE: monitoring class attendance</h1>
-
-		<form onsubmit="return onload()">
-			<label for="URLID"><span>URL to Google Sheets responses </span></label>
-			<input type="text" name="url" id="URLID" size="50"/>
-			<input type="submit">
+		<form>
+			<div id="navigateButtons"></div>
+			<br>
+			<ul>
+				<li>
+					<label for="nameSelector"><span>Select student</span></label>
+					<input id="nameSelector" list="nameInput" placeholder="Student name..." onchange="displayStudent();"  onfocus="this.value='';">
+				</li>
+			</ul>
 		</form>
 
-		<p id="output1Id" />
+		<br>
 
-				
+		<form>
+			<p id="output1Id">		
+		</form>
+
 	</body>
 </html>

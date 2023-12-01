@@ -1,8 +1,67 @@
-/* // By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, January 2021 */	
+/* // By Frode Eika Sandnes, Oslo Metropolitan University, Oslo, Norway, December 2022 */	
 
-table, th, td {
-  border: 1px solid black;
-}
+body
+    {
+    color:grey;
+    background-color:black;
+    font-family:sans-serif;
+    }
+
+.custom-file-upload 
+    {
+/*    border: 1px solid white;
+    display: inline-block;
+    padding: 6px 12px;*/
+    cursor: pointer;
+    color: black;
+    background-color: hsl(120, 100%, 30%);
+    }    
+
+.disabledButton
+    {
+    margin: 0px;
+    background-color: hsl(120, 30%, 30%);     
+    }
+.enabledButton
+    {
+    margin: 0px;
+    background-color: hsl(120, 100%, 30%);  
+    }    
+.belowLimit
+    {
+    color : red;
+    }
+.mediumLevel
+    {
+    color: orange;
+    }
+.highLevel
+    {
+    color:lime;
+    }
+
+input[type="file"] 
+    {
+    display: none;
+    }   
+
+input:invalid 
+    { 
+    background: red; 
+    color: white;
+    }
+
+td
+    {
+    padding-left: 5px;
+    padding-right: 5px;
+    }
+
+table, th, td 
+    {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    }
 
 table {
 	border-collapse: collapse;
@@ -21,8 +80,7 @@ ul {
 
 form {
     margin: 0 auto;
-    width: 80%;
-//    width: 400px;
+    width: 90%;
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
@@ -34,31 +92,23 @@ div+div {
 
 label span {
     display: inline-block;
-    width: 120px;
+    width: 40%;
     text-align: right;
 }
 
 input, textarea {
     font: 1em sans-serif;
- /*   width: 250px;*/
     box-sizing: border-box;
     border: 1px solid #999;
+    background:hsl(120, 25%, 50%);
 }
 
-input[type=checkbox], input[type=radio], {
-    width: auto;
-    border: none;
-}
+
 
 input:focus, textarea:focus {
     border-color: #000;
 }
 
-textarea {
-    vertical-align: top;
- /*   height: 5em;*/
-    resize: vertical;
-}
 
 fieldset {
     width: 250px;
